@@ -8,9 +8,10 @@ Weather station using Arduino
 * arduino-weather.ino - source file for Arduino
 * README.md - this file
 
-## Resources
+## Video
 [![Arduino Weather](http://img.youtube.com/vi/tskHVZVp7Ss/0.jpg)](https://www.youtube.com/watch?v=tskHVZVp7Ss&list=PLx8GfAxNN_auGBR6LYJm67gwEL8KkZsHh&index=1)
-[See video on Youtube](https://www.youtube.com/watch?v=tskHVZVp7Ss&list=PLx8GfAxNN_auGBR6LYJm67gwEL8KkZsHh&index=1)
+
+* [View on Youtube](https://www.youtube.com/watch?v=tskHVZVp7Ss&list=PLx8GfAxNN_auGBR6LYJm67gwEL8KkZsHh&index=1)
 
 ## Parts used
 

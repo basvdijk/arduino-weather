@@ -10,6 +10,7 @@ Weather station using Arduino
 
 ## Resources
 [![Arduino Weather](http://img.youtube.com/vi/tskHVZVp7Ss/0.jpg)](https://www.youtube.com/watch?v=tskHVZVp7Ss&list=PLx8GfAxNN_auGBR6LYJm67gwEL8KkZsHh&index=1)
+[See video on Youtube](https://www.youtube.com/watch?v=tskHVZVp7Ss&list=PLx8GfAxNN_auGBR6LYJm67gwEL8KkZsHh&index=1)
 
 ## Parts used
 

@@ -7,27 +7,27 @@ Description: Arduino weather station with OLED screen. Created at Sanoma Hackato
 Display used: http://www.hobbyelectronica.nl/product/128x64-oled-geel-blauw-i2c/
 Determine display type: https://code.google.com/p/u8glib/wiki/gallery
 
-Connect DHT data to pin 2
+Connect DHT data to pin D2
 
 OLED pins:
 
-SCL -> A4
-SDA -> A5
+SDA -> A4
+SCL -> A5
 
 */
 
 #include "U8glib.h"
 
 // setup u8g object, please remove comment from one of the following constructor calls
-// IMPORTANT NOTE: The following list is incomplete. The complete list of supported 
+// IMPORTANT NOTE: The following list is incomplete. The complete list of supported
 // devices with all constructor calls is here: http://code.google.com/p/u8glib/wiki/device
 U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NO_ACK);	// Display which does not send AC
 
 #include <DHT.h>
- 
+
 DHT dht;
 
-/* 
+/*
   Bitmaps created with The Gimp (http://www.gimp.org) and exported as XBM files
   Add U8G_PROGMEM to the exported XBM data since The Gimp does not add this automatically.
   In case you forget you end up with a scrambled image.
@@ -55,9 +55,9 @@ static unsigned char humid_bits[] U8G_PROGMEM = {
    0x00, 0xc0, 0x01, 0x3c, 0x00, 0x00, 0xe0, 0x01, 0x78, 0x00, 0x00, 0xf0,
    0x00, 0xf0, 0x00, 0x00, 0x78, 0x00, 0xe0, 0x01, 0x00, 0x3c, 0x00, 0xc0,
    0x07, 0x00, 0x3f, 0x00, 0x80, 0x1f, 0xc0, 0x0f, 0x00, 0x00, 0xff, 0xff,
-   0x07, 0x00, 0x00, 0xfc, 0xff, 0x01, 0x00, 0x00, 0xc0, 0x3f, 0x00, 0x00 }; 
+   0x07, 0x00, 0x00, 0xfc, 0xff, 0x01, 0x00, 0x00, 0xc0, 0x3f, 0x00, 0x00 };
 
- 
+
 #define temperature_width 18
 #define temperature_height 47
 static unsigned char temperature_bits[] U8G_PROGMEM = {
@@ -78,38 +78,38 @@ static unsigned char temperature_bits[] U8G_PROGMEM = {
 void drawTemp(void) {
 
   u8g.setFont(u8g_font_unifont);
-  u8g.setPrintPos(0, 10); 
+  u8g.setPrintPos(0, 10);
   u8g.print("TEMPERATURE  1/2");
 
   u8g.setFont(u8g_font_fub25);
-  
+
   u8g.setPrintPos(10, 50);
 
   float temp = round(dht.getTemperature()*10)/10;
 
   Serial.println(temp);
-  
+
   u8g.print(String(round(dht.getTemperature()*10)/10) + " C");
-  
+
   // Celcius symbol
   u8g.drawCircle(50, 23, 2);
-  
+
   // Thermometer icon
   u8g.drawXBMP(100, 16, temperature_width, temperature_height, temperature_bits);
 
 }
 
 void drawHumid(void) {
- 
+
 
   u8g.setFont(u8g_font_unifont);
-  u8g.setPrintPos(0, 10); 
+  u8g.setPrintPos(0, 10);
   u8g.print("HUMIDITY     2/2");
-  
+
   u8g.setFont(u8g_font_fub25);
-  u8g.setPrintPos(10, 50); 
+  u8g.setPrintPos(10, 50);
   u8g.print(String(int(dht.getHumidity())) + "%");
-  
+
   // Humidity icon
   u8g.drawXBMP( 90, 16, humid_width, humid_height, humid_bits);
 
@@ -119,43 +119,42 @@ void drawHumid(void) {
 uint8_t draw_state = 0;
 
 void draw() {
-  
+
   switch(draw_state ) {
     case 0: drawTemp(); break;
     case 1: drawHumid(); break;
   }
-  
+
 }
 
 void setup(void) {
   // flip screen, if required
   // u8g.setRot180();
-  
+
   Serial.begin(9600);
-  
+
   dht.setup(2); // data pin 2
-    
+
 }
 
 void loop(void) {
   // picture loop
   delay(dht.getMinimumSamplingPeriod());
-  
+
   u8g.firstPage();
   do {
     draw();
-    
+
   } while( u8g.nextPage() );
-  
+
    // increase the state
   draw_state++;
-  
+
   // Used if instead of mod operator to avoid running out of int size
   if ( draw_state > 2  )
     draw_state = 0;
-  
+
   // Switch draw_state after delay
   delay(1500);
 
 }
-

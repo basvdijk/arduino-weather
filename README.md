@@ -41,3 +41,16 @@ http://www.ebay.nl/itm/AM2302-DHT22-Digital-Temperature-and-Humidity-Sensor-modu
 ### Water sensor
 http://www.hobbyelectronica.nl/product/regendruppel-meter/
 Not quite the sensor I expected. It detects water or no water, but is not accurate on the amount of water on the sensor.
+
+### Fixing errors
+
+FIX for `arduino fatal error: U8glib.h: No such file or directory`
+- Sketch -> Include Library -> Manage libraries
+- Search for U8glib by oliver and choose install
+
+FIX for fatal error: `DHT.h: No such file or directory #include <DHT.h>`
+- Goto https://github.com/mysensors/MySensorsArduinoExamples/tree/master/libraries/DHT
+- Download the zip from https://github.com/markruys/arduino-DHT/archive/master.zip
+- Extract the zip file in your Arduino library folder e.g. ~/Documents/Arduino/libraries
+- Restart the Arduino IDE
+- Sketch -> Include Library -> arduino-DHT-master

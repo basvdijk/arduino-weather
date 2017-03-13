@@ -14,6 +14,19 @@ OLED pins:
 SDA -> A4
 SCL -> A5
 
+Update 13 march 2017:
+
+FIX for arduino fatal error: U8glib.h: No such file or directory
+Sketch -> Include Library -> Manage libraries
+Search for U8glib by oliver and choose install
+
+FIX for fatal error: DHT.h: No such file or directory #include <DHT.h>
+Goto https://github.com/mysensors/MySensorsArduinoExamples/tree/master/libraries/DHT
+Download the zip from https://github.com/markruys/arduino-DHT/archive/master.zip
+Extract the zip file in your Arduino library folder e.g. ~/Documents/Arduino/libraries
+Restart the Arduino IDE
+Sketch -> Include Library -> arduino-DHT-master
+
 */
 
 #include "U8glib.h"

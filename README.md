@@ -1,6 +1,8 @@
 # arduino-weather
 Weather station using Arduino
 
+More Arduino tutorials on https://basontech.com and https://arduino-lessen.nl (Dutch)
+
 ## Files
 * arduino-weather-board.jpg - overview picture
 * arduino-weather-wiring.png - schematic overview of wires
